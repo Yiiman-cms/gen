@@ -1,0 +1,8 @@
+﻿/*@import url(fontiran.css); !* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد *!*/
+
+h1, h2, h3, h4, h5, h6,input, textarea,p,input,span,li,td,th,button,a,label {
+	font-family: IRANSans !important;
+}
+h1 {
+	font-weight: bold;
+}
