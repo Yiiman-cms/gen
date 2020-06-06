@@ -50,7 +50,7 @@ $this->title = Yii::t('<?= $generator->messageCategory ?>','<?= $generator->Crud
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::camel2words(StringHelper::basename($mName))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-\system\widgets\backLang\backLangWidget::languages();
+\system\widgets\backLang\backLangWidget::languages($model);
 
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view">
