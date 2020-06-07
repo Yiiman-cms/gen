@@ -30,6 +30,7 @@ echo "<?php\n";
 namespace <?= StringHelper::dirname(ltrim($generator->controllerClass, '\\')) ?>;
 
 use Yii;
+use system\modules\language\models\Language;
 use <?= ltrim($generator->modelClass, '\\') ?>;
 <?php if (!empty($generator->searchModelClass)): ?>
 use <?= ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? " as $searchModelAlias" : "") ?>;
@@ -115,9 +116,11 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
      */
     public function actionCreate()
     {
-        $model = new $this->model();
+        $model = new <?= $modelClass ?>;
 
         if ($model->load(Yii::$app->request->post())) {
+            $language=Language::find()->where(['default'=>1])->one();
+            $model->language=$language->id;
             if($model->save()){
                 $model->saveImage( 'image');
                 return $this->redirect(['view', 'id' => $model->id]);

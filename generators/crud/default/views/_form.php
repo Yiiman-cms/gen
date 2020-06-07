@@ -83,11 +83,11 @@ use kartik\select2\Select2;
 								\kartik\select2\Select2::className() ,
 								[
 									\'data\'          => \yii\helpers\ArrayHelper::map(
-										\system\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->all() ,
+										\system\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->where([\'language_parent\'=>null])->all() ,
 										\'id\' ,
 										\'title\'
 									) ,
-									\'pluginOptions\' => [ \'dir\' => \'rtl\' ]
+									\'pluginOptions\' => [\'dir\' => \'rtl\',\'placeholder\'=>\'لطفا انتخاب کنید\']
 								]
 							) ?>' ?>
                                         </div>
@@ -260,12 +260,12 @@ use kartik\select2\Select2;
 								[
 									\'data\'          => \yii\helpers\ArrayHelper::map(
 										\system\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->where(
-											[ \'status\' => 1 ]
+											[ \'status\' => 1,\'language_parent\'=>null ]
 										)->all() ,
 										\'id\' ,
 										\'title\'
 									) ,
-									\'pluginOptions\' => [ \'dir\' => \'rtl\' ]
+									\'pluginOptions\' => [\'dir\' => \'rtl\',\'placeholder\'=>\'لطفا انتخاب کنید\']
 								]
 							) ?>' ?>
                                         </div>

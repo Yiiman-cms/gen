@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             } else {
                                 foreach ($generator->getTableSchema()->columns as $column) {
                                     $format = $generator->generateColumnFormat($column);
-                                    if ($column->name == 'id') {
+                                    if ($column->name == 'id' ||$column->name == 'language' ||$column->name == 'language_parent' ) {
                                         continue;
                                     }
                                     switch ($column->name) {
