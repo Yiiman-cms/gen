@@ -72,7 +72,7 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
     public function actionIndex()
     {
 <?php if (!empty($generator->searchModelClass)): ?>
-        $searchModel = new $this->model();
+        $searchModel = new <?= isset($searchModelAlias) ? $searchModelAlias : $searchModelClass ?>();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -98,8 +98,13 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
      */
     public function actionView(<?= $actionParams ?>)
     {
+        if (!empty($_GET['lng'])){
+            $model=$this->findModel(<?= $actionParams ?>,$_GET['lng']);
+        }else{
+            $model=$this->findModel(<?= $actionParams ?>);
+        }
         return $this->render('view', [
-            'model' => $this->findModel(<?= $actionParams ?>),
+            'model' => $model,
         ]);
     }
 
@@ -132,8 +137,11 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
      */
     public function actionUpdate(<?= $actionParams ?>)
     {
-        $model=$this->findModel(<?= $actionParams ?>);
-
+        if (!empty($_GET['lng'])){
+            $model=$this->findModel(<?= $actionParams ?>,$_GET['lng']);
+        }else{
+            $model=$this->findModel(<?= $actionParams ?>);
+        }
         if ($model->load(Yii::$app->request->post())) {
             $model->saveImage( 'image');
             if( $model->save()){
@@ -160,32 +168,6 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the <?= $modelClass ?> model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
-     * @return <?=                   $modelClass ?> the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel(<?= $actionParams ?>)
-    {
-<?php
-if (count($pks) === 1) {
-    $condition = '$id';
-} else {
-    $condition = [];
-    foreach ($pks as $pk) {
-        $condition[] = "'$pk' => \$$pk";
-    }
-    $condition = '[' . implode(', ', $condition) . ']';
-}
-?>
-        if (($this->model = <?= $modelClass ?>::findOne(<?= $condition ?>)) !== null) {
-            return $this->model;
-        }
-
-        throw new NotFoundHttpException(<?= $generator->generateString('The requested page does not exist.') ?>);
-    }
 
 
 
@@ -196,6 +178,6 @@ if (count($pks) === 1) {
 
 
 	public function init(){
-		$this->model=new <?= isset($searchModelAlias) ? $searchModelAlias : $searchModelClass ?>();
+		$this->modelClass=new <?= $modelClass ?>();
 	}
 }

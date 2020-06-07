@@ -69,9 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             foreach ($tableSchema->columns as $column) {
                                 $format = $generator->generateColumnFormat($column);
                                 if (++$count < 6) {
-                                    if ($column->name == 'id') {
+                                    if ($column->name == 'id' ||$column->name == 'language' ||$column->name == 'language_parent' ) {
                                         continue;
                                     }
+
                                     switch ($column->name) {
                                         case 'status':
                                             ?>
@@ -126,7 +127,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
 
                                 } else {
-
+                                    if ($column->name == 'id' ||$column->name == 'language' ||$column->name == 'language_parent' ) {
+                                        continue;
+                                    }
                                     switch ($column->name) {
                                         case 'status':
                                             ?>
@@ -157,7 +160,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                         ?>
 
-                        ['class' => 'yii\grid\ActionColumn'],
+                        ['class' => 'system\lib\ActionColumn'],
                         ],
                         ]); ?>
                     <?php else: ?>

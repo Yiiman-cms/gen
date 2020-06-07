@@ -64,7 +64,11 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     public function search($params)
     {
         $query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find();
-
+        if (!empty( $_GET['lng'])){
+            $query=$query->where(['language'=> $_GET['lng']]);
+        }else{
+            $query=$query->where(['language_parent'=>null]);
+        }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

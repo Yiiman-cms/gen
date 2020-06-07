@@ -93,8 +93,15 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      */
     public function actionView(<?= $actionParams ?>)
     {
-        return $this->render('view', [
-            'model' => $this->findModel(<?= $actionParams ?>),
+        if (!empty($_GET['lng'])){
+
+             $model=$this->findModel(<?= $actionParams ?>,$_GET['lng']);
+        }else{
+             $model=$this->findModel(<?= $actionParams ?>);
+        }
+        return $this->render('view',
+        [
+            'model' => $model,
         ]);
     }
 
@@ -129,8 +136,11 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      */
     public function actionUpdate(<?= $actionParams ?>)
     {
-        $model = $this->findModel(<?= $actionParams ?>);
-
+        if (!empty($_GET['lng'])){
+            $model=$this->findModel(<?= $actionParams ?>,$_GET['lng']);
+        }else{
+            $model=$this->findModel(<?= $actionParams ?>);
+        }
         if ($model->load(Yii::$app->request->post())) {
             $model->saveImage( 'image');
             if( $model->save()){
@@ -160,27 +170,51 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     /**
      * Finds the <?= $modelClass ?> model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $lng
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return <?=                   $modelClass ?> the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(<?= $actionParams ?>)
+    protected function findModel(<?= $actionParams ?>,$lng=null)
     {
-<?php
-if (count($pks) === 1) {
-    $condition = '$id';
-} else {
-    $condition = [];
-    foreach ($pks as $pk) {
-        $condition[] = "'$pk' => \$$pk";
-    }
-    $condition = '[' . implode(', ', $condition) . ']';
-}
-?>
-        if (($model = <?= $modelClass ?>::findOne(<?= $condition ?>)) !== null) {
-            return $model;
-        }
+            if (empty($lng))
+            {
+                if (($this->model = Skills::findOne($id)) !== null) {
+                    return $this->model;
+                }
+            }else{
+                $this->model = Skills::find()->where(['id'=>$id,'language'=>$lng])->one();
+                if (empty($this->model)){
+                    $this->model=Skills::find()->where(['language_parent'=>$id,'language'=>$lng])->one();
+                }
+                if (empty($this->model)){
+                    $baseModel= Skills::find()->where(['id'=>$id])->one();
+                    if (empty($baseModel)){
+                        throw new NotFoundHttpException(Yii::t('skills', 'The requested page does not exist.'));
+                    }else{
+                        $newModel=new Skills();
+                        foreach ($newModel->attributes as $attribute =>$val){
+                            if ($attribute=='language'){
+                                $newModel->$attribute=$lng;
+                                continue;
+                            }
+                            if ($attribute=='language_parent'){
+                                $newModel->$attribute=$id;
+                                continue;
+                            }
+                                if ($attribute=='id'){
+                                continue;
+                            }
 
-        throw new NotFoundHttpException(<?= $generator->generateString('The requested page does not exist.') ?>);
+                            $newModel->$attribute=$baseModel->$attribute;
+                        }
+                        $newModel->save();
+                        return $newModel;
+                    }
+                }else{
+                    return $this->model;
+                }
+
+            }
     }
 }
