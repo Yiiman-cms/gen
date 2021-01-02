@@ -9,6 +9,7 @@ use yii\helpers\StringHelper;
 $urlParams = $generator->generateUrlParams();
 $urlId = $generator->generateUrlModelID();
 global $mName;
+global $hasImage;
 echo "<?php\n";
 ?>
 use system\modules\filemanager\widget\MediaViewWidget;
@@ -56,6 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view">
     <div class="container">
         <div class="jumbotron">
+            <div class="viewLanguagebox">
+                زبان های ست شده:
+                <?= '<?=' ?> (new \system\lib\i18n\LanguageColumn())->renderDataCell($model,0,0) ?>
+            </div>
             <div class="card card-nav-tabs">
                 <div class="card-body ">
                     <h3 class="text-center"><?= "<?= " ?>Html::encode($this->title) ?></h3>
@@ -75,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             } else {
                                 foreach ($generator->getTableSchema()->columns as $column) {
                                     $format = $generator->generateColumnFormat($column);
-                                    if ($column->name == 'id' ||$column->name == 'language' ||$column->name == 'language_parent' ) {
+                                    if ($column->name == 'id' || $column->name == 'language' || $column->name == 'language_parent') {
                                         continue;
                                     }
                                     switch ($column->name) {
@@ -121,9 +126,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'attribute' => '<?= $column->name ?>' ,
                                             'format'    => 'raw' ,
                                             'value'     => function ( $model )
-                                                {
-                                                    return MediaViewWidget::widget(['attribute'=>'<?= $column->name ?>','model'=>$model]);
-                                                }
+                                            {
+                                            return MediaViewWidget::widget(['attribute'=>'<?= $column->name ?>','model'=>$model]);
+                                            }
                                             ] ,
                                             <?php
                                             break;
@@ -131,6 +136,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                             echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
                                     }
                                 }
+                            }
+                            if ($hasImage) {
+                                ?>
+                                [
+                                'attribute' => 'image',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                return MediaViewWidget::widget(['attribute' => 'image', 'model' => $model]);
+                                }
+                                ],
+                                <?php
                             }
                             ?>
                             ],

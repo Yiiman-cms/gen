@@ -19,7 +19,7 @@ if ($modelClass === $searchModelClass) {
 
 /* @var $class ActiveRecordInterface */
 $class = $generator->modelClass;
-$pks = $class::primaryKey();
+//$pks = $class::primaryKey();
 $urlParams = $generator->generateUrlParams();
 $actionParams = $generator->generateActionParams();
 $actionParamComments = $generator->generateActionParamComments();
@@ -99,11 +99,9 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
      */
     public function actionView(<?= $actionParams ?>)
     {
-        if (!empty($_GET['lng'])){
-            $model=$this->findModel(<?= $actionParams ?>,$_GET['lng']);
-        }else{
-            $model=$this->findModel(<?= $actionParams ?>);
-        }
+
+        $model=$this->findModel(<?= $actionParams ?>);
+
         return $this->render('view', [
             'model' => $model,
         ]);
@@ -119,10 +117,7 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
         $model = new <?= $modelClass ?>;
 
         if ($model->load(Yii::$app->request->post())) {
-            $language=Language::find()->where(['default'=>1])->one();
-            $model->language=$language->id;
             if($model->save()){
-                $model->saveImage( 'image');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -140,13 +135,8 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
      */
     public function actionUpdate(<?= $actionParams ?>)
     {
-        if (!empty($_GET['lng'])){
-            $model=$this->findModel(<?= $actionParams ?>,$_GET['lng']);
-        }else{
-            $model=$this->findModel(<?= $actionParams ?>);
-        }
+        $model=$this->findModel(<?= $actionParams ?>);
         if ($model->load(Yii::$app->request->post())) {
-            $model->saveImage( 'image');
             if( $model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -181,6 +171,7 @@ class <?= $controllerClass ?> extends \system\lib\Controller<?php /// StringHelp
 
 
 	public function init(){
+        parent::init();
 		$this->modelClass=new <?= $modelClass ?>();
 	}
 }

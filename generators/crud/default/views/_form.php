@@ -24,7 +24,7 @@ if (empty($safeAttributes)) {
 
 
 echo "<?php\n";
-
+global $hasImage;
 ?>
 use system\modules\filemanager\widget\FileSelectorWidget;
 use yii\helpers\Html;
@@ -47,6 +47,18 @@ use kartik\select2\Select2;
 
         ?>
         <div class="row">
+            <?= '<?php' ?>
+            if(Yii::$app->controller->action->id =='update'){
+            ?>
+            <div class="viewLanguagebox">
+                زبان های موجود:
+                <?= '<?= ' ?>(new \system\lib\i18n\LanguageColumn())->renderDataCell($model,0,0) ?>
+            </div>
+
+            <?= '<?php' ?>
+            }
+            ?>
+
             <div class="col-md-3">
                 <div class="row">
                     <div class="card card-nav-tabs" style="margin-top: 20px ">
@@ -103,7 +115,11 @@ use kartik\select2\Select2;
 
                 ?>
                 <?php
-
+                if ($hasImage) {
+                    ?>
+                    $model->image_input_widget($form, 'درج تصویر', true, ['image', 'video'], '');
+                    <?php
+                }
 
                 $relations = json_encode($relations);
                 foreach ($columns as $relKey => $attribute) {
@@ -161,10 +177,10 @@ use kartik\select2\Select2;
                             <div class="col-md-12 pull-right">
                                 <?php
                                 foreach ($columns as $attribute) {
-                                    if ($attribute=='language'){
+                                    if ($attribute == 'language') {
                                         continue;
                                     }
-                                    if ($attribute=='language_parent'){
+                                    if ($attribute == 'language_parent') {
                                         continue;
                                     }
 
@@ -361,10 +377,10 @@ use kartik\select2\Select2;
                                     if ($attribute == 'hash') {
                                         continue;
                                     }
-                                    if ($attribute=='language'){
+                                    if ($attribute == 'language') {
                                         continue;
                                     }
-                                    if ($attribute=='language_parent'){
+                                    if ($attribute == 'language_parent') {
                                         continue;
                                     }
 

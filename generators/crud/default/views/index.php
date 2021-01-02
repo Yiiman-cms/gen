@@ -9,6 +9,7 @@ use yii\helpers\StringHelper;
 $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
 global $mName;
+global $hasImage;
 echo "<?php\n";
 
 ?>
@@ -54,7 +55,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => $dataProvider,
                         <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
                         ['class' => 'yii\grid\SerialColumn'],
-
+                        ['class' => '\system\lib\i18n\LanguageColumn'],
+                        <?php
+                        if ($hasImage) {
+                            ?>
+                            ['class' => \system\modules\gallery\grid\ImageColumn::className()],
+                            <?php
+                        }
+                        ?>
                         <?php
                         $count = 0;
                         if (($tableSchema = $generator->getTableSchema()) === false) {
@@ -69,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             foreach ($tableSchema->columns as $column) {
                                 $format = $generator->generateColumnFormat($column);
                                 if (++$count < 6) {
-                                    if ($column->name == 'id' ||$column->name == 'language' ||$column->name == 'language_parent' ) {
+                                    if ($column->name == 'id' || $column->name == 'language' || $column->name == 'language_parent') {
                                         continue;
                                     }
 
@@ -84,9 +92,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                             switch ( $model->status ) {
                                             case $model::STATUS_ACTIVE:
                                             return '<span style="color:green">انتشار یافته</span>';
-                                             break;
-                                             case $model::STATUS_DE_ACTIVE:
-                                             return '<span
+                                                                                                 break;
+                                                                                                 case $model::STATUS_DE_ACTIVE:
+                                                                                                 return '<span
                                                 style="color: red">بازبینی</span>';
                                             break;
                                             }
@@ -127,7 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
 
                                 } else {
-                                    if ($column->name == 'id' ||$column->name == 'language' ||$column->name == 'language_parent' ) {
+                                    if ($column->name == 'id' || $column->name == 'language' || $column->name == 'language_parent') {
                                         continue;
                                     }
                                     switch ($column->name) {

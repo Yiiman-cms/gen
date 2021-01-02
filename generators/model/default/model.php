@@ -30,6 +30,9 @@ foreach ($relations as $relation) {
             if ($relation[3] == $generator->ns.'\\'.$relation[1]) {
                 continue;
             }
+            if ($relation[1]==$className){
+                continue;
+            }
             echo 'use \\' . $relation[3] . "; \n";
         }
 
