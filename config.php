@@ -12,6 +12,7 @@
 return
 	[
 		'type'      => [ 'common' ],
+        'name_fa' => 'ژنریتور',
 		'namespace' => 'system\modules\gen',
 		'sourceLanguage' => 'fa',
 		'address'     => '',
