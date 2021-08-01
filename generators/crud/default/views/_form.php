@@ -297,7 +297,11 @@ use kartik\select2\Select2;
 
                 ?>
                 <?php
-
+                if ($hasImage) {
+                    ?>
+                    $model->image_input_widget($form, 'درج تصویر', true, ['image', 'video'], '');
+                    <?php
+                }
 
                 $relations = json_encode($relations);
                 foreach ($columns as $relKey => $attribute) {
