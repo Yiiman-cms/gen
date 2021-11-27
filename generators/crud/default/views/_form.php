@@ -226,8 +226,8 @@ use kartik\select2\Select2;
 											[
 												\'data\'          =>
 													[
-														$model::STATUS_DE_ACTIVE  => \'منتشر شده\' ,
-														$model::STATUS_ACTIVE   => \'در حال بازبینی\' ,
+														$model::STATUS_ACTIVE => \'منتشر شده\',
+                                                        $model::STATUS_DE_ACTIVE => \'در حال بازبینی\',
 														
 													] ,
 												\'options\'       => [ \'dir\' => \'rtl\' ] ,
