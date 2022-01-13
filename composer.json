@@ -17,7 +17,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.0",
-        "yiiman/yii-basics": "dev-main"
+        "php": ">=7.0"
     }
 }
