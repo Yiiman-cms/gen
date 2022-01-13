@@ -46,7 +46,7 @@ $asset = YiiMan\gen\GiiAsset::register($this);
     </div>
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">محصولی از  <a href="http://tokapps.ir">تیم طراحی وب توکاپس</a></p>
+            <p class="pull-left">Produced by  <a href="https://yiiman.ir">YiiMan CMS</a></p>
             
         </div>
     </footer>

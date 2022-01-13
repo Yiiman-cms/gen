@@ -6,11 +6,11 @@ use yii\helpers\Html;
 /* @var $content string */
 
 $generators = Yii::$app->controller->module->generators;
-$this->title = 'کد انجین توکاپس';
+$this->title = 'YiiMan code generator engine';
 ?>
 <div class="default-index">
     <div class="page-header">
-        <h1 class="text-center">به موتور کد توکاپس خوش آمدید</h1>
+        <h1 class="text-center">به موتور کد یی من خوش آمدید</h1>
     </div>
 
     <p class="lead text-right" style="direction:rtl">با خودساز یکی از کدهای ذیل شروع کنید:</p>
