@@ -302,12 +302,12 @@ EOD;
 
                         if ($key == 0) {
 
-                            $crud->viewPath = '@YiiMan\YiiBasics\modules\\' . $this->moduleID . '\views\default';
+                            $crud->viewPath = '@vendor/yiiman/yii-basics/src/modules/' . $this->moduleID . '/views/efault';
                         } else {
 
                             $viewName = lcfirst($this->GetCamelName($crud->controllerClass));
                             $viewName = str_replace('Controller', '', $viewName);
-                            $crud->viewPath = '@YiiMan\YiiBasics\modules\\' . $this->moduleID . '\views\\' . $viewName;
+                            $crud->viewPath = '@vendor/yiiman/yii-basics/src/modules/' . $this->moduleID . '/views/' . $viewName;
                         }
                         $crud->baseControllerClass = 'yii\web\Controller';
                         $crud->enableI18N = true;
