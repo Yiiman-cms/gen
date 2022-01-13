@@ -1,6 +1,6 @@
 {
     "name": "yiiman/yii-module-gen",
-    "description": "YiiMan generator forked and improved by YiiMan CMS TM",
+    "description": "YiiMan generator forked from yiiSoft and improved by YiiMan CMS TM",
     "license": "BSD-3-Clause",
     "type": "yii2-extension",
     "autoload": {
