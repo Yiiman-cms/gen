@@ -17,7 +17,7 @@ use yii\web\AssetBundle;
  */
 class GiiAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/yiiman/yii-module-gen/assets';
+    public $sourcePath = '@vendor/yiiman/yii-module-gen/src/assets';
     public $css = [
         'main.css',
         'css/fontiran.css',
