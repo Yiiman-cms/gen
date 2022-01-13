@@ -8,10 +8,10 @@
 	$name = $generator->moduleName;
 echo '<?php'?>
 	/**
-	 * Site: http://tokapps.ir
-	 * AuthorName: gholamreza beheshtian
+	 * Site: http://yiiman.ir
+	 * AuthorName: gholamreza beheshtian (YiiMan)
 	 * AuthorNumber:09353466620
-	 * AuthorCompany: tokapps
+	 * AuthorCompany: YiiMan Gen
 	 *
 	 *
 	 */
