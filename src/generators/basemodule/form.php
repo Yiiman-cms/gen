@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
-use system\lib\View;
+use YiiMan\YiiBasics\lib\View;
 
 /* @var $form yii\widgets\ActiveForm */
 /* @var $generator YiiMan\gen\generators\module\Generator */

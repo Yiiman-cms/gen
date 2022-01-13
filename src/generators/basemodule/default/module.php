@@ -8,7 +8,7 @@
 
 $className = $generator->moduleID;
 $pos = strrpos($className, '\\');
-$ns = ltrim('system\modules\\'.$className);
+$ns = ltrim('YiiMan\YiiBasics\modules\\'.$className);
 $className = substr($className, $pos + 1);
 
 echo "<?php\n";
@@ -47,8 +47,8 @@ class Module extends \yii\base\Module
 			// < set Class Parameters >
 			{
 			$this->config              = include realpath( __DIR__ . '/config.php' );
-			$this->nameSpace           = 'system\modules\\' . $this->config['name'];
-			$this->controllerNamespace = 'system\modules\\' . $this->config['name'] . '\controllers';
+			$this->nameSpace           = 'YiiMan\YiiBasics\modules\\' . $this->config['name'];
+			$this->controllerNamespace = 'YiiMan\YiiBasics\modules\\' . $this->config['name'] . '\controllers';
 			$this->name                = $this->config['name'];
 			
 			}
@@ -106,7 +106,7 @@ class Module extends \yii\base\Module
 	Yii::$app->i18n->translations[ $this->name ] = [
 	'class'          => 'yii\i18n\PhpMessageSource' ,
 	'sourceLanguage' => Yii::$app->language ,
-	'basePath'       => '@system/modules/' . $this->name . '/messages' ,
+	'basePath'       => '@vendor/yiiman/yii-basics/src/modules/' . $this->name . '/messages' ,
 	'fileMap'        => [
 	$this->name => 'module.php' ,
 	] ,
@@ -116,7 +116,7 @@ class Module extends \yii\base\Module
 	public function initComponents() {
 	$Option =
 	[
-	'class' => 'system\modules\setting\components\Options' ,
+	'class' => 'YiiMan\YiiBasics\modules\setting\components\Options' ,
 	];
 	
 	

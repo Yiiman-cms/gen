@@ -36,7 +36,7 @@ class Generator extends \YiiMan\gen\Generator
     public $ns = 'app\models';
     public $tableName;
     public $modelClass;
-    public $baseClass = 'system\lib\ActiveRecord';
+    public $baseClass = 'YiiMan\YiiBasics\lib\ActiveRecord';
     public $generateRelations = self::RELATIONS_ALL;
     public $generateRelationsFromCurrentSchema = true;
     public $generateLabelsFromComments = false;
@@ -405,7 +405,7 @@ class Generator extends \YiiMan\gen\Generator
 	        if (empty( $namespace[1]) && !strpos( 'Module' , $refClassName)){
 		        $namespace='\common\models\\';
 	        }else{
-		        $namespace='\system\modules\\'.$namespace[1].'\models\\';
+		        $namespace='\YiiMan\YiiBasics\modules\\'.$namespace[1].'\models\\';
 	        }
 	        
 	        $refClassName=str_replace( 'Module' , '' , $refClassName);
@@ -566,7 +566,7 @@ class Generator extends \YiiMan\gen\Generator
                         "return \$this->" . ($hasMany ? 'hasMany' : 'hasOne') . "($className::className(), $link);",
                         $className,
                         $hasMany,
-                        'system\modules\\'.strtolower($className).'\models\\'.$className,
+                        'YiiMan\YiiBasics\modules\\'.strtolower($className).'\models\\'.$className,
                     ];
                 }
 

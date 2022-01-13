@@ -16,7 +16,7 @@ echo '<?php'?>
 	 *
 	 */
 	
-	use system\lib\Triggers;
+	use YiiMan\YiiBasics\lib\Triggers;
 	use yii\base\Event;
 	use yii\web\Application;
 	
@@ -27,7 +27,7 @@ echo '<?php'?>
 		[
 			'name'      => $dir ,
 			'type'      => [ 'backend' ] ,
-			'namespace' => 'system\modules\\' . $dir ,
+			'namespace' => 'YiiMan\YiiBasics\modules\\' . $dir ,
 			'address'   => '' ,
 			'menu'      =>
 				

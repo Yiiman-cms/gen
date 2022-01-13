@@ -167,7 +167,7 @@ EOD;
             $modelGenerator = new \YiiMan\gen\generators\model\Generator();
             $modelGenerator->tableName = $table;
             $modelGenerator->modelClass = $tableClass;
-            $modelGenerator->ns = 'system\modules\\' . $this->moduleID . '\models';
+            $modelGenerator->ns = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\models';
             $modelGenerator->useTablePrefix = true;
             $modelGenerator->generateRelationsFromCurrentSchema = true;
             $modelGenerator->generateLabelsFromComments = true;
@@ -218,7 +218,7 @@ EOD;
                 $modelGenerator = new \YiiMan\gen\generators\model\Generator();
                 $modelGenerator->tableName = $table;
                 $modelGenerator->modelClass = ucfirst($tableClass);
-                $modelGenerator->ns = 'system\modules\\' . $this->moduleID . '\models';
+                $modelGenerator->ns = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\models';
                 $modelGenerator->useTablePrefix = true;
                 $modelGenerator->generateRelationsFromCurrentSchema = true;
                 $modelGenerator->generateLabelsFromComments = true;
@@ -245,7 +245,7 @@ EOD;
                                 $ModelRelation = new \YiiMan\gen\generators\model\Generator();
                                 $ModelRelation->tableName = $rel['table'];
                                 $ModelRelation->modelClass = ucfirst($tableClass);
-                                $ModelRelation->ns = 'system\modules\\' . $this->moduleID . '\models';
+                                $ModelRelation->ns = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\models';
                                 $ModelRelation->useTablePrefix = true;
                                 $ModelRelation->generateRelationsFromCurrentSchema = true;
                                 $ModelRelation->generateLabelsFromComments = true;
@@ -284,17 +284,17 @@ EOD;
                     {
                         $crud = new \YiiMan\gen\generators\crud\Generator();
                         $crud->CrudName = $_POST[$table];
-                        $crud->modelClass = 'system\modules\\' . $this->moduleID . '\models\\' . ucfirst(
+                        $crud->modelClass = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\models\\' . ucfirst(
                                 $tableClass
                             );
 
-                        $crud->searchModelClass = 'system\modules\\' . $this->moduleID . '\models\\Search' . ucfirst(
+                        $crud->searchModelClass = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\models\\Search' . ucfirst(
                                 $tableClass
                             );
                         if ($key == 0) {
-                            $crud->controllerClass = 'system\modules\\' . $this->moduleID . '\controllers\DefaultController';
+                            $crud->controllerClass = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\controllers\DefaultController';
                         } else {
-                            $crud->controllerClass = 'system\modules\\' . $this->moduleID . '\controllers\\' . ucfirst(
+                            $crud->controllerClass = 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\controllers\\' . ucfirst(
                                     $this->GetCamelName($table, true)
                                 ) . 'Controller';
                         }
@@ -302,12 +302,12 @@ EOD;
 
                         if ($key == 0) {
 
-                            $crud->viewPath = '@system\modules\\' . $this->moduleID . '\views\default';
+                            $crud->viewPath = '@YiiMan\YiiBasics\modules\\' . $this->moduleID . '\views\default';
                         } else {
 
                             $viewName = lcfirst($this->GetCamelName($crud->controllerClass));
                             $viewName = str_replace('Controller', '', $viewName);
-                            $crud->viewPath = '@system\modules\\' . $this->moduleID . '\views\\' . $viewName;
+                            $crud->viewPath = '@YiiMan\YiiBasics\modules\\' . $this->moduleID . '\views\\' . $viewName;
                         }
                         $crud->baseControllerClass = 'yii\web\Controller';
                         $crud->enableI18N = true;
@@ -415,7 +415,7 @@ EOD;
     public function getModulePath()
     {
         return Yii::getAlias(
-            '@system/modules/' . $this->moduleID
+            '@vendor/yiiman/yii-basics/src/modules/' . $this->moduleID
         );
     }
 
@@ -424,7 +424,7 @@ EOD;
      */
     public function getControllerNamespace()
     {
-        return 'system\modules\\' . $this->moduleID . '\controllers';
+        return 'YiiMan\YiiBasics\modules\\' . $this->moduleID . '\controllers';
     }
 
 }

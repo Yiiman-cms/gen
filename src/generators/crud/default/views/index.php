@@ -13,7 +13,7 @@ global $hasImage;
 echo "<?php\n";
 
 ?>
-use system\modules\filemanager\widget\MediaViewWidget;
+use YiiMan\YiiBasics\modules\filemanager\widget\MediaViewWidget;
 use yii\helpers\Html;
 use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
@@ -22,14 +22,14 @@ use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\w
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-\system\widgets\topMenu\TopMenuWidget::addBtb(
+\YiiMan\YiiBasics\widgets\topMenu\TopMenuWidget::addBtb(
 'add',
 <?= $generator->generateString('ثبت ' . Inflector::camel2words(StringHelper::basename($generator->CrudName))) ?>,
 'success' ,
 null ,
 Yii::$app->Options->BackendUrl . '/<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/default/create'
 );
-\system\widgets\backLang\backLangWidget::languages();
+\YiiMan\YiiBasics\widgets\backLang\backLangWidget::languages();
 
 $this->title = <?= $generator->generateString(Inflector::camel2words(StringHelper::basename($generator->CrudName))) ?>.' ';
 $this->params['breadcrumbs'][] = $this->title;
@@ -55,11 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => $dataProvider,
                         <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
                         ['class' => 'yii\grid\SerialColumn'],
-                        ['class' => '\system\lib\i18n\LanguageColumn'],
+                        ['class' => '\YiiMan\YiiBasics\lib\i18n\LanguageColumn'],
                         <?php
                         if ($hasImage) {
                             ?>
-                            ['class' => \system\modules\gallery\grid\ImageColumn::className()],
+                            ['class' => \YiiMan\YiiBasics\modules\gallery\grid\ImageColumn::className()],
                             <?php
                         }
                         ?>
@@ -168,7 +168,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                         ?>
 
-                        ['class' => 'system\lib\ActionColumn'],
+                        ['class' => 'YiiMan\YiiBasics\lib\ActionColumn'],
                         ],
                         ]); ?>
                     <?php else: ?>

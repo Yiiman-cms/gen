@@ -14,7 +14,7 @@ echo "<?php\n";
 
 namespace <?= $generator->getControllerNamespace() ?>;
 
-class <?= StringHelper::basename($generator->controllerClass) ?> extends system\lib\Controller<?php /// '\\' . trim($generator->baseClass, '\\') . "\n" ?>
+class <?= StringHelper::basename($generator->controllerClass) ?> extends YiiMan\YiiBasics\lib\Controller<?php /// '\\' . trim($generator->baseClass, '\\') . "\n" ?>
 {
 <?php foreach ($generator->getActionIDs() as $action): ?>
     public function action<?= Inflector::id2camel($action) ?>()

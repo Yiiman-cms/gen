@@ -26,7 +26,7 @@ if (empty($safeAttributes)) {
 echo "<?php\n";
 global $hasImage;
 ?>
-use system\modules\filemanager\widget\FileSelectorWidget;
+use YiiMan\YiiBasics\modules\filemanager\widget\FileSelectorWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
@@ -52,7 +52,7 @@ use kartik\select2\Select2;
             ?>
             <div class="viewLanguagebox">
                 زبان های موجود:
-                <?= '<?= ' ?>(new \system\lib\i18n\LanguageColumn())->renderDataCell($model,0,0) ?>
+                <?= '<?= ' ?>(new \YiiMan\YiiBasics\lib\i18n\LanguageColumn())->renderDataCell($model,0,0) ?>
             </div>
 
             <?= '<?php' ?>
@@ -95,7 +95,7 @@ use kartik\select2\Select2;
 								\kartik\select2\Select2::className() ,
 								[
 									\'data\'          => \yii\helpers\ArrayHelper::map(
-										\system\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->where([\'language_parent\'=>null])->all() ,
+										\YiiMan\YiiBasics\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->where([\'language_parent\'=>null])->all() ,
 										\'id\' ,
 										\'title\'
 									) ,
@@ -275,7 +275,7 @@ use kartik\select2\Select2;
 								\kartik\select2\Select2::className() ,
 								[
 									\'data\'          => \yii\helpers\ArrayHelper::map(
-										\system\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->where(
+										\YiiMan\YiiBasics\modules\\' . $rel['module'] . '\models\\' . $rel['class'] . '::find()->where(
 											[ \'status\' => 1,\'language_parent\'=>null ]
 										)->all() ,
 										\'id\' ,

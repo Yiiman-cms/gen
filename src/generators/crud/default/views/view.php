@@ -12,7 +12,7 @@ global $mName;
 global $hasImage;
 echo "<?php\n";
 ?>
-use system\modules\filemanager\widget\MediaViewWidget;
+use YiiMan\YiiBasics\modules\filemanager\widget\MediaViewWidget;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -20,7 +20,7 @@ use yii\widgets\DetailView;
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
 
-\system\widgets\topMenu\TopMenuWidget::addBtb(
+\YiiMan\YiiBasics\widgets\topMenu\TopMenuWidget::addBtb(
 'add',
 <?= $generator->generateString('ثبت ' . Inflector::camel2words(StringHelper::basename($generator->CrudName))) ?>,
 'success' ,
@@ -29,7 +29,7 @@ Yii::$app->Options->BackendUrl . '/<?= Inflector::camel2id(StringHelper::basenam
 );
 
 
-\system\widgets\topMenu\TopMenuWidget::addBtb(
+\YiiMan\YiiBasics\widgets\topMenu\TopMenuWidget::addBtb(
 'edit',
 <?= $generator->generateString('ویرایش این مورد') ?>,
 'info' ,
@@ -38,7 +38,7 @@ Yii::$app->Options->BackendUrl . '/<?= Inflector::camel2id(StringHelper::basenam
 );
 
 
-\system\widgets\topMenu\TopMenuWidget::addBtb(
+\YiiMan\YiiBasics\widgets\topMenu\TopMenuWidget::addBtb(
 'delete',
 <?= $generator->generateString('حذف این مورد') ?>,
 'danger' ,
@@ -51,7 +51,7 @@ $this->title = Yii::t('<?= $generator->messageCategory ?>','<?= $generator->Crud
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::camel2words(StringHelper::basename($mName))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-\system\widgets\backLang\backLangWidget::languages($model);
+\YiiMan\YiiBasics\widgets\backLang\backLangWidget::languages($model);
 
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view">
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="jumbotron">
             <div class="viewLanguagebox">
                 زبان های ست شده:
-                <?= '<?=' ?> (new \system\lib\i18n\LanguageColumn())->renderDataCell($model,0,0) ?>
+                <?= '<?=' ?> (new \YiiMan\YiiBasics\lib\i18n\LanguageColumn())->renderDataCell($model,0,0) ?>
             </div>
             <div class="card card-nav-tabs">
                 <div class="card-body ">

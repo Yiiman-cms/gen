@@ -35,7 +35,7 @@
 		public $modelClass;
 		public $controllerClass;
 		public $viewPath;
-		public $baseControllerClass = 'system\lib\Controller';
+		public $baseControllerClass = 'YiiMan\YiiBasics\lib\Controller';
 		public $indexWidgetType = 'grid';
 		public $searchModelClass = '';
 		/**
@@ -321,13 +321,13 @@
 					case 'Content':
 					case 'Contents':
 					case 'contents':
-						return "\$form->field(\$model, '$attribute')->widget(\system\widgets\\floara\FroalaEditorWidget::className() ,[])";
+						return "\$form->field(\$model, '$attribute')->widget(\YiiMan\YiiBasics\widgets\\floara\FroalaEditorWidget::className() ,[])";
 						break;
 					case 'date':
 					case 'start_date':
 					case 'Date':
 					case 'end_date':
-						return "\$form->field(\$model, '$attribute')->widget(\system\widgets\materialTimePicker\TimePickerWidget::className() ,[])";
+						return "\$form->field(\$model, '$attribute')->widget(\YiiMan\YiiBasics\widgets\materialTimePicker\TimePickerWidget::className() ,[])";
 						break;
 					default:
 						return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
@@ -368,14 +368,14 @@
 				case 'Content':
 				case 'Contents':
 				case 'contents':
-					return "\$form->field(\$model, '$attribute')->widget(\system\widgets\\floara\FroalaEditorWidget::className() ,[])";
+					return "\$form->field(\$model, '$attribute')->widget(\YiiMan\YiiBasics\widgets\\floara\FroalaEditorWidget::className() ,[])";
 					break;
 
 				case 'date':
 				case 'start_date':
 				case 'Date':
 				case 'end_date':
-					return "\$form->field(\$model, '$attribute')->widget(\system\widgets\materialTimePicker\TimePickerWidget::className() ,[])";
+					return "\$form->field(\$model, '$attribute')->widget(\YiiMan\YiiBasics\widgets\materialTimePicker\TimePickerWidget::className() ,[])";
 					break;
 			}
 			
