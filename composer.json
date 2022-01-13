@@ -5,7 +5,7 @@
     "type": "yii2-extension",
     "autoload": {
         "psr-4": {
-            "Yiiman\\gen\\": "src/"
+            "YiiMan\\gen\\": "src/"
         }
     },
     "authors": [
