@@ -1,0 +1,20 @@
+{
+    "name": "yiiman/yii-module-gen",
+    "description": "YiiMan generator forked and improved by YiiMan CMS TM",
+    "license": "BSD-3-Clause",
+    "type": "yii2-extension",
+    "autoload": {
+        "psr-4": {
+            "Yiiman\\gen\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "YiiMan",
+            "email": "info@yiiman.ir",
+            "homepage": "https://yiiman.ir"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
