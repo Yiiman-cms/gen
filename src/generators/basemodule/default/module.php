@@ -8,7 +8,7 @@
 
 $className = $generator->moduleID;
 $pos = strrpos($className, '\\');
-$ns = ltrim('YiiMan\YiiBasics\modules\\'.$className);
+$ns = ltrim('system\modules\\'.$className);
 $className = substr($className, $pos + 1);
 
 echo "<?php\n";
@@ -35,7 +35,7 @@ class Module extends \YiiMan\YiiBasics\lib\Module
      * {@inheritdoc}
      */
    
-	public $controllerNamespace='<?= $ns.'/controllers' ?>';
+	public $controllerNamespace='<?= $ns.'\controllers' ?>';
 
     public static function menus()
     {
@@ -91,7 +91,7 @@ class Module extends \YiiMan\YiiBasics\lib\Module
                 ]
                 <?php
             }else{
-                echo '\'url\'=> $dir.\'/index\'';
+                echo '\'url\'=> \''.$generator->moduleID.'/index\'';
             }
 
 

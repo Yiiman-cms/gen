@@ -405,7 +405,7 @@ class Generator extends \YiiMan\gen\Generator
 	        if (empty( $namespace[1]) && !strpos( 'Module' , $refClassName)){
 		        $namespace='\common\models\\';
 	        }else{
-		        $namespace='\YiiMan\YiiBasics\modules\\'.$namespace[1].'\models\\';
+		        $namespace='\system\modules\\'.$namespace[1].'\models\\';
 	        }
 	        
 	        $refClassName=str_replace( 'Module' , '' , $refClassName);
@@ -566,7 +566,7 @@ class Generator extends \YiiMan\gen\Generator
                         "return \$this->" . ($hasMany ? 'hasMany' : 'hasOne') . "($className::className(), $link);",
                         $className,
                         $hasMany,
-                        'YiiMan\YiiBasics\modules\\'.strtolower($className).'\models\\'.$className,
+                        'system\modules\\'.strtolower($className).'\models\\'.$className,
                     ];
                 }
 
