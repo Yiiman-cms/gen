@@ -13,7 +13,7 @@ return
 	[
 		'type'      => [ 'common' ],
         'name_fa' => 'ژنریتور',
-		'namespace' => 'system\modules\gen',
+		'namespace' => 'YiiMan\gen',
 		'sourceLanguage' => 'fa',
 		'address'     => '',
 		'menu'        =>
