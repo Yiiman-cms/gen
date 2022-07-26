@@ -19,9 +19,9 @@ use yii\web\AssetBundle;
  */
 class TypeAheadAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/typeahead.js/dist';
+    public $sourcePath = '@bower/bs-typeahead/js/';
     public $js = [
-        'typeahead.bundle.js',
+        'bootstrap-typeahead.js',
     ];
     public $depends = [
         'yii\bootstrap\BootstrapAsset',
