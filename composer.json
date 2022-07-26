@@ -15,6 +15,11 @@
             "homepage": "https://yiiman.ir"
         }
     ],
+     "scripts": {
+        "post-install-cmd": [
+            "bower install bs-typeahead"
+        ]
+    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0"
